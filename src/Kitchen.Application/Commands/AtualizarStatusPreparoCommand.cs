@@ -42,7 +42,7 @@ public class AtualizarStatusPreparoCommandHandler : IRequestHandler<AtualizarSta
 
         if (request.NovoStatus == StatusPreparo.Cancelado)
         {
-            await _publish.Publish<IPedidoCanceladoEvent>(new
+            await _publish.Publish<IPedidoRejeitadoEvent>(new
             {
                 PedidoId = pedido.Id,
                 Motivo = "Pedido rejeitado na cozinha",

@@ -1,5 +1,5 @@
 ﻿namespace Kitchen.Domain.Events;
-public interface IPedidoCanceladoEvent
+public interface IPedidoRejeitadoEvent
 {
     Guid PedidoId { get; }
     string Motivo { get; }
