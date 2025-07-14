@@ -30,4 +30,13 @@ internal class PedidoPreparoRepository : IPedidoPreparoRepository
             .Include(p => p.Itens)
             .FirstOrDefaultAsync(p => p.Id == id);
     }
+
+    public async Task<IEnumerable<PedidoEmPreparo>> ObterTodosAsync()
+    {
+        return await _dbContext.Pedidos
+            .AsNoTracking()
+            .Include(p => p.Itens)
+            .Take(100)
+            .ToListAsync();
+    }
 }

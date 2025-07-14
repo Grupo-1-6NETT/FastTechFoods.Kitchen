@@ -1,4 +1,5 @@
 ﻿using Kitchen.Application.Commands;
+using Kitchen.Application.Queries;
 using Kitchen.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -27,5 +28,11 @@ public class PedidoPreparoController(IMediator _mediator) : ControllerBase
     {
         var result = await _mediator.Send(new AtualizarStatusPreparoCommand(id, StatusPreparo.Cancelado));
         return result ? Ok("Pedido rejeitado pela cozinha") : NotFound("Pedido não encontrado");
+    }
+    [HttpGet]
+    public async Task<IActionResult> ObterTodos()
+    {
+        var pedidos = await _mediator.Send(new ObterPedidosEmPreparoQuery());
+        return Ok(pedidos);
     }
 }
