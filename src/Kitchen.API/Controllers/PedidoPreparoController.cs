@@ -2,6 +2,7 @@
 using Kitchen.Application.Queries;
 using Kitchen.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kitchen.API.Controllers;
@@ -10,6 +11,7 @@ namespace Kitchen.API.Controllers;
 public class PedidoPreparoController(IMediator _mediator) : ControllerBase
 {
     [HttpPut("{id}/preparar")]
+    [Authorize(Roles = "atendente")]
     public async Task<IActionResult> IniciarPreparo(Guid id)
     {
         var result = await _mediator.Send(new AtualizarStatusPreparoCommand(id, StatusPreparo.EmPreparo));
@@ -17,6 +19,7 @@ public class PedidoPreparoController(IMediator _mediator) : ControllerBase
     }
 
     [HttpPut("{id}/finalizar")]
+    [Authorize(Roles = "atendente")]
     public async Task<IActionResult> FinalizarPreparo(Guid id)
     {
         var result = await _mediator.Send(new AtualizarStatusPreparoCommand(id, StatusPreparo.Finalizado));
@@ -24,12 +27,14 @@ public class PedidoPreparoController(IMediator _mediator) : ControllerBase
     }
 
     [HttpPut("{id}/rejeitar")]
+    [Authorize(Roles = "gerente,atendente")]
     public async Task<IActionResult> RejeitarPreparo(Guid id)
     {
         var result = await _mediator.Send(new AtualizarStatusPreparoCommand(id, StatusPreparo.Cancelado));
         return result ? Ok("Pedido rejeitado pela cozinha") : NotFound("Pedido não encontrado");
     }
     [HttpGet]
+    [Authorize(Roles = "gerente,atendente")]
     public async Task<IActionResult> ObterTodos()
     {
         var pedidos = await _mediator.Send(new ObterPedidosEmPreparoQuery());
