@@ -4,7 +4,7 @@ using Kitchen.Application.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureDI(builder.Configuration);
-builder.Services.AddApplicationDI();
+builder.Services.AddApplicationDI(builder.Configuration);
 
 builder.Services.AddControllers();
 

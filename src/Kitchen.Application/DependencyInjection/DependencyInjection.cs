@@ -1,16 +1,17 @@
 ﻿using Kitchen.Application.Consumer;
 using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Kitchen.Application.DependencyInjection;
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplicationDI(this IServiceCollection services)
+    public static IServiceCollection AddApplicationDI(this IServiceCollection services, IConfiguration config)
     {
-        AddMassTransit(services);
+        AddMassTransit(services, config);
         return services;
     }
-    private static void AddMassTransit(IServiceCollection services)
+    private static void AddMassTransit(IServiceCollection services,IConfiguration config)
     {
         services.AddMassTransit(x =>
         {
@@ -18,10 +19,10 @@ public static class DependencyInjection
 
             x.UsingRabbitMq((ctx, cfg) =>
             {
-                cfg.Host("localhost", "/", h =>
+                cfg.Host("rabbitmq", "/", h =>
                 {
-                    h.Username("guest");
-                    h.Password("guest");
+                    h.Username(config["RabbitMQSettings:Username"]!);
+                    h.Password(config["RabbitMQSettings:Password"]!);
                 });
 
                 cfg.ReceiveEndpoint("kitchen-pedido-criado", e =>
