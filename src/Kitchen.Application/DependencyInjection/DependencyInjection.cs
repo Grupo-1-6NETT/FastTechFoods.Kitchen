@@ -1,4 +1,5 @@
-﻿using Kitchen.Application.Consumer;
+﻿using Kitchen.Application.Commands;
+using Kitchen.Application.Consumer;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,8 +9,17 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationDI(this IServiceCollection services, IConfiguration config)
     {
+        AddMediatr(services);
         AddMassTransit(services, config);
         return services;
+    }
+    private static void AddMediatr(IServiceCollection services)
+    {
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(typeof(AtualizarStatusPreparoCommand).Assembly);
+        });
+
     }
     private static void AddMassTransit(IServiceCollection services,IConfiguration config)
     {

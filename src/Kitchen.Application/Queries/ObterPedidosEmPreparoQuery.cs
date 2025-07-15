@@ -1,7 +1,6 @@
 ﻿using Kitchen.Application.DTOs;
 using Kitchen.Domain.Repositories;
 using MediatR;
-using System.Collections.Generic;
 
 namespace Kitchen.Application.Queries;
 public record ObterPedidosEmPreparoQuery() : IRequest<IEnumerable<PedidoPreparoDTO>>;
