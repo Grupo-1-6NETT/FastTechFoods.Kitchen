@@ -1,11 +1,8 @@
 ﻿using Kitchen.Domain.Enums;
 using Kitchen.Domain.Events;
 using Kitchen.Domain.Repositories;
-using Kitchen.Infrastructure.Data;
 using MassTransit;
-using MassTransit.Transports;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Kitchen.Application.Commands;
 
