@@ -28,6 +28,25 @@ public class AtualizarStatusPreparoCommandHandler : IRequestHandler<AtualizarSta
 
         pedido.AtualizarStatus(request.NovoStatus);
         await _unit.CommitAsync();
+        if(request.NovoStatus == StatusPreparo.EmPreparacao)
+        {
+            await _publish.Publish<IPedidoEmPreparoEvent>(new
+            {
+                PedidoId = pedido.Id,
+                DataInicioPreparo = DateTime.UtcNow
+            });
+        }
+
+        if (request.NovoStatus == StatusPreparo.Rejeitado)
+        {
+            await _publish.Publish<IPedidoRejeitadoEvent>(new
+            {
+                PedidoId = pedido.Id,
+                Motivo = "Pedido rejeitado na cozinha",
+                DataCancelamento = DateTime.UtcNow
+            });
+        }
+
         if (request.NovoStatus == StatusPreparo.Finalizado)
         {
             await _publish.Publish<IPedidoFinalizadoEvent>(new
@@ -37,15 +56,7 @@ public class AtualizarStatusPreparoCommandHandler : IRequestHandler<AtualizarSta
             });
         }
 
-        if (request.NovoStatus == StatusPreparo.Cancelado)
-        {
-            await _publish.Publish<IPedidoRejeitadoEvent>(new
-            {
-                PedidoId = pedido.Id,
-                Motivo = "Pedido rejeitado na cozinha",
-                DataCancelamento = DateTime.UtcNow
-            });
-        }
+       
         return true;
     }
 }

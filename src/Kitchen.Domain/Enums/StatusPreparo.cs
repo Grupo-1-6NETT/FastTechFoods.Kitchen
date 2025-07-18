@@ -1,8 +1,9 @@
 ﻿namespace Kitchen.Domain.Enums;
 public enum StatusPreparo
 {
-    Recebido = 1,
-    EmPreparo = 2,
-    Finalizado = 3,
-    Cancelado = 4
+    Recebido = 2,
+    Rejeitado = 3,
+    Cancelado = 4,
+    EmPreparacao = 5,
+    Finalizado = 6
 }

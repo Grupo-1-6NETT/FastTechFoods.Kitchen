@@ -70,14 +70,14 @@ public class AtualizarStatusPreparoCommandHandlerTests
         _repoMock.Setup(r => r.ObterPorIdAsync(pedido.Id))
                  .ReturnsAsync(pedido);
 
-        var command = new AtualizarStatusPreparoCommand(pedido.Id, StatusPreparo.EmPreparo);
+        var command = new AtualizarStatusPreparoCommand(pedido.Id, StatusPreparo.EmPreparacao);
 
         // Act
         var result = await _handler.Handle(command, default);
 
         // Assert
         Assert.True(result);
-        Assert.Equal(StatusPreparo.EmPreparo, pedido.Status);
+        Assert.Equal(StatusPreparo.EmPreparacao, pedido.Status);
         _publishMock.Verify(p => p.Publish<IPedidoFinalizadoEvent>(It.IsAny<object>(), default), Times.Never);
         _publishMock.Verify(p => p.Publish<IPedidoRejeitadoEvent>(It.IsAny<object>(), default), Times.Never);
     }
@@ -89,7 +89,7 @@ public class AtualizarStatusPreparoCommandHandlerTests
         var id = Guid.NewGuid();
         _repoMock.Setup(r => r.ObterPorIdAsync(id)).ReturnsAsync((PedidoEmPreparo?)null);
 
-        var command = new AtualizarStatusPreparoCommand(id, StatusPreparo.EmPreparo);
+        var command = new AtualizarStatusPreparoCommand(id, StatusPreparo.EmPreparacao);
 
         // Act
         var result = await _handler.Handle(command, default);

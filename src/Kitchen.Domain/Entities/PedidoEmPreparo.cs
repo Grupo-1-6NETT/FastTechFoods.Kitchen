@@ -9,6 +9,8 @@ public class PedidoEmPreparo
     public StatusPreparo Status { get; private set; }
     public List<ItemPreparo> Itens { get; private set; } = new();
 
+    public string FormaDeEntrega { get; private set; } = string.Empty;
+
     protected PedidoEmPreparo() { }
 
     public PedidoEmPreparo(Guid id, Guid clienteId, DateTime dataCriacao, List<ItemPreparo> itens)

@@ -2,7 +2,6 @@
 using Kitchen.Domain.Repositories;
 using Kitchen.Infrastructure.Data;
 using MassTransit;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Orders.Domain.Events;
 
@@ -31,7 +30,7 @@ public class PedidoCriadoConsumer : IConsumer<IPedidoCriadoEvent>
             .ToList();
 
         var pedido = new PedidoEmPreparo(pedidoEvent.PedidoId, pedidoEvent.ClienteId, pedidoEvent.DataCriacao, itens);
-
+        pedido.AtualizarStatus(Domain.Enums.StatusPreparo.Recebido);
         await _repository.AdicionarAsync(pedido);
         await _dbContext.SaveChangesAsync();
     }
