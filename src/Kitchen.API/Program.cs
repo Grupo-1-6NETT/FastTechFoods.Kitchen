@@ -74,7 +74,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddServer(new OpenApiServer
     {
         Url = "/kitchen",
-        Description = "Via Ingress - Prefixo /auth"
+        Description = "Via Ingress - Prefixo /kitchen"
     });
 
     c.AddServer(new OpenApiServer
