@@ -1,3 +1,4 @@
+using Kitchen.API.Filter;
 using Kitchen.Application.DependencyInjection;
 using Kitchen.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -32,7 +33,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt => opt.Filters.Add<ExceptionFilter>());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
