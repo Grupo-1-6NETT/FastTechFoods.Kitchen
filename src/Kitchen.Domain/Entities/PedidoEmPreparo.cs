@@ -8,8 +8,8 @@ public class PedidoEmPreparo
     public DateTime DataCriacao { get; private set; }
     public StatusPreparo Status { get; private set; }
     public List<ItemPreparo> Itens { get; private set; } = new();
-
     public string FormaDeEntrega { get; private set; } = string.Empty;
+    public string? Justificativa { get; private set; }
 
     protected PedidoEmPreparo() { }
 
@@ -25,5 +25,9 @@ public class PedidoEmPreparo
     public void AtualizarStatus(StatusPreparo novoStatus)
     {        
         Status = novoStatus;
+    }
+    public void JustificarCancelamento(string motivo)
+    {
+        Justificativa = motivo;
     }
 }

@@ -10,13 +10,13 @@ public class PedidoCriadoConsumer : IConsumer<IPedidoCriadoEvent>
 {
     private readonly ILogger<PedidoCriadoConsumer> _logger;
     private readonly IPedidoPreparoRepository _repository;
-    private readonly KitchenDbContext _dbContext;
+    private readonly IUnitOfWork _unit;
 
-    public PedidoCriadoConsumer(ILogger<PedidoCriadoConsumer> logger, IPedidoPreparoRepository repository, KitchenDbContext dbContext)
+    public PedidoCriadoConsumer(ILogger<PedidoCriadoConsumer> logger, IPedidoPreparoRepository repository, IUnitOfWork unit)
     {
         _logger = logger;
         _repository = repository;
-        _dbContext = dbContext;
+        _unit = unit;
     }
 
     public async Task Consume(ConsumeContext<IPedidoCriadoEvent> context)
@@ -32,6 +32,6 @@ public class PedidoCriadoConsumer : IConsumer<IPedidoCriadoEvent>
         var pedido = new PedidoEmPreparo(pedidoEvent.PedidoId, pedidoEvent.ClienteId, pedidoEvent.DataCriacao, itens);
         pedido.AtualizarStatus(Domain.Enums.StatusPreparo.Recebido);
         await _repository.AdicionarAsync(pedido);
-        await _dbContext.SaveChangesAsync();
+        await _unit.CommitAsync();
     }
 }
