@@ -25,6 +25,36 @@ public class PedidoEmPreparo
     public void AtualizarStatus(StatusPreparo novoStatus)
     {        
         Status = novoStatus;
+
+        switch (novoStatus)
+        {
+            case StatusPreparo.Rejeitado:
+                if (Status != StatusPreparo.Recebido && Status != StatusPreparo.EmPreparacao)
+                    throw new InvalidOperationException("Pedido não pode ser rejeitado nesse estado.");
+                Status = StatusPreparo.Rejeitado;
+                break;
+
+            case StatusPreparo.Cancelado:
+                if (Status != StatusPreparo.Recebido)
+                    throw new InvalidOperationException("Pedido não pode ser cancelado nesse estado.");
+                Status = StatusPreparo.Cancelado;
+                break;
+
+            case StatusPreparo.EmPreparacao:
+                if (Status != StatusPreparo.Recebido)
+                    throw new InvalidOperationException("Pedido só pode ir para preparo se estiver confirmado.");
+                Status = StatusPreparo.EmPreparacao;
+                break;
+
+            case StatusPreparo.Finalizado:
+                if (Status != StatusPreparo.EmPreparacao)
+                    throw new InvalidOperationException("Pedido só pode ser finalizado após o preparo.");
+                Status = StatusPreparo.Finalizado;
+                break;
+
+            default:
+                throw new InvalidOperationException("Status inválido para transição.");
+        }
     }
     public void JustificarCancelamento(string motivo)
     {
