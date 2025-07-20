@@ -26,6 +26,7 @@ public static class DependencyInjection
         services.AddMassTransit(x =>
         {
             x.AddConsumer<PedidoCriadoConsumer>();
+            x.AddConsumer<PedidoCanceladoConsumer>();
 
             x.UsingRabbitMq((ctx, cfg) =>
             {
@@ -38,6 +39,10 @@ public static class DependencyInjection
                 cfg.ReceiveEndpoint("kitchen-pedido-criado", e =>
                 {
                     e.ConfigureConsumer<PedidoCriadoConsumer>(ctx);
+                });
+                cfg.ReceiveEndpoint("kitchen-pedido-cancelado", e =>
+                {
+                    e.ConfigureConsumer<PedidoCanceladoConsumer>(ctx);
                 });
             });
         });
