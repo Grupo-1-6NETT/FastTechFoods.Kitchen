@@ -5,13 +5,13 @@ VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.API", "src\Kitchen.API\Kitchen.API.csproj", "{35527CFD-680E-43B3-9943-51BDC0BFCBBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.API", "src\Kitchen.API\Kitchen.API.csproj", "{35527CFD-680E-43B3-9943-51BDC0BFCBBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Domain", "src\Kitchen.Domain\Kitchen.Domain.csproj", "{DB2B048F-8409-4FA4-ACD7-8A2292C81981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Domain", "src\Kitchen.Domain\Kitchen.Domain.csproj", "{DB2B048F-8409-4FA4-ACD7-8A2292C81981}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Infrastructure", "src\Kitchen.Infrastructure\Kitchen.Infrastructure.csproj", "{A468ACCA-207E-433B-9EAC-E69DA55F5EE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Infrastructure", "src\Kitchen.Infrastructure\Kitchen.Infrastructure.csproj", "{A468ACCA-207E-433B-9EAC-E69DA55F5EE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Application", "src\Kitchen.Application\Kitchen.Application.csproj", "{E3CE6F72-5D03-490C-9171-4BA2687BC3E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Application", "src\Kitchen.Application\Kitchen.Application.csproj", "{E3CE6F72-5D03-490C-9171-4BA2687BC3E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{089100B1-113F-4E66-888A-E83F3999EAFD}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,7 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0C88DD14-F956-CE84-757C-A364CCF449FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.Test", "test\Kitchen.Test\Kitchen.Test.csproj", "{09F88FD8-FAE2-48F2-82F0-8843F7242896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen.Application.Test", "test\Kitchen.Test\Kitchen.Application.Test.csproj", "{09F88FD8-FAE2-48F2-82F0-8843F7242896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen.API.Test", "Kitchen.API.Test\Kitchen.API.Test.csproj", "{7D35B3E9-31B2-4EC9-8CC5-38157AC2B9EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{09F88FD8-FAE2-48F2-82F0-8843F7242896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09F88FD8-FAE2-48F2-82F0-8843F7242896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09F88FD8-FAE2-48F2-82F0-8843F7242896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D35B3E9-31B2-4EC9-8CC5-38157AC2B9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D35B3E9-31B2-4EC9-8CC5-38157AC2B9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D35B3E9-31B2-4EC9-8CC5-38157AC2B9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D35B3E9-31B2-4EC9-8CC5-38157AC2B9EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{A468ACCA-207E-433B-9EAC-E69DA55F5EE6} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{E3CE6F72-5D03-490C-9171-4BA2687BC3E9} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{09F88FD8-FAE2-48F2-82F0-8843F7242896} = {0C88DD14-F956-CE84-757C-A364CCF449FC}
+		{7D35B3E9-31B2-4EC9-8CC5-38157AC2B9EF} = {0C88DD14-F956-CE84-757C-A364CCF449FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42BF3810-A5F9-4704-A1A1-65B827A792EB}
