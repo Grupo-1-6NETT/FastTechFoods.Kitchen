@@ -23,9 +23,7 @@ public class PedidoEmPreparo
     }
 
     public void AtualizarStatus(StatusPreparo novoStatus)
-    {        
-        Status = novoStatus;
-
+    {  
         switch (novoStatus)
         {
             case StatusPreparo.Rejeitado:

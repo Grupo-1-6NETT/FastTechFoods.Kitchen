@@ -6,7 +6,7 @@ using Kitchen.Domain.Repositories;
 using MassTransit;
 using Moq;
 
-namespace Kitchen.Test;
+namespace Kitchen.Application.Test;
 public class AtualizarStatusPreparoCommandHandlerTests
 {
     private readonly Mock<IPedidoPreparoRepository> _repoMock = new();
@@ -28,9 +28,11 @@ public class AtualizarStatusPreparoCommandHandlerTests
     public async Task Handle_StatusFinalizado_DeveAlterarStatusFinalizado()
     {
         // Arrange
-        var pedido = new PedidoEmPreparo(Guid.NewGuid(),Guid.NewGuid(),DateTime.UtcNow,new List<ItemPreparo>());
-        _repoMock.Setup(r => r.ObterPorIdAsync(pedido.Id))
-                 .ReturnsAsync(pedido);
+        var pedido = new PedidoEmPreparo(Guid.NewGuid(), Guid.NewGuid(), DateTime.UtcNow, []);        
+        pedido.AtualizarStatus(StatusPreparo.EmPreparacao);
+        _repoMock
+            .Setup(r => r.ObterPorIdAsync(pedido.Id))
+            .ReturnsAsync(pedido);
 
         var command = new AtualizarStatusPreparoCommand(pedido.Id, StatusPreparo.Finalizado);
 
