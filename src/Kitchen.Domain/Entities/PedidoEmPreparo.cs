@@ -6,7 +6,7 @@ public class PedidoEmPreparo
     public Guid Id { get; private set; }
     public Guid ClienteId { get; private set; }
     public DateTime DataCriacao { get; private set; }
-    public StatusPreparo Status { get; private set; }
+    public StatusPreparo Status { get; private set; } = StatusPreparo.Recebido;
     public List<ItemPreparo> Itens { get; private set; } = new();
     public string FormaDeEntrega { get; private set; } = string.Empty;
     public string? Justificativa { get; private set; }
@@ -26,6 +26,7 @@ public class PedidoEmPreparo
     {  
         switch (novoStatus)
         {
+
             case StatusPreparo.Rejeitado:
                 if (Status != StatusPreparo.Recebido && Status != StatusPreparo.EmPreparacao)
                     throw new InvalidOperationException("Pedido não pode ser rejeitado nesse estado.");
@@ -40,7 +41,7 @@ public class PedidoEmPreparo
 
             case StatusPreparo.EmPreparacao:
                 if (Status != StatusPreparo.Recebido)
-                    throw new InvalidOperationException("Pedido só pode ir para preparo se estiver confirmado.");
+                    throw new InvalidOperationException("Pedido só pode ir para preparo se estiver status recebido.");
                 Status = StatusPreparo.EmPreparacao;
                 break;
 

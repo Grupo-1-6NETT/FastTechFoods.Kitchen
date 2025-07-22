@@ -30,7 +30,6 @@ public class PedidoCriadoConsumer : IConsumer<IPedidoCriadoEvent>
             .ToList();
 
         var pedido = new PedidoEmPreparo(pedidoEvent.PedidoId, pedidoEvent.ClienteId, pedidoEvent.DataCriacao, itens);
-        pedido.AtualizarStatus(Domain.Enums.StatusPreparo.Recebido);
         await _repository.AdicionarAsync(pedido);
         await _unit.CommitAsync();
     }
