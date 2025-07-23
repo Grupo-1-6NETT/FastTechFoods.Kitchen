@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Kitchen.API\Kitchen.API.csproj" />
+    <ProjectReference Include="..\..\src\Kitchen.API\Kitchen.API.csproj" />
+    <ProjectReference Include="..\..\src\Kitchen.API\Kitchen.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
